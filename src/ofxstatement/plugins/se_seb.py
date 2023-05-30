@@ -5,14 +5,12 @@ from ofxstatement.parser import StatementParser
 from ofxstatement.statement import Statement, StatementLine
 
 
-class SamplePlugin(Plugin):
-    """Sample plugin (for developers only)"""
-
-    def get_parser(self, filename: str) -> "SampleParser":
-        return SampleParser(filename)
+class SwedenSebPlugin(Plugin):
+    def get_parser(self, filename: str) -> "SebParser":
+        return SebParser(filename)
 
 
-class SampleParser(StatementParser[str]):
+class SebParser(StatementParser[str]):
     def __init__(self, filename: str) -> None:
         super().__init__()
         self.filename = filename
