@@ -9,6 +9,14 @@ from ofxstatement.statement import  BankAccount, Statement, StatementLine, gener
 from openpyxl import load_workbook
 from openpyxl.cell import Cell
 
+def extract_account_id(cell):
+    regex_pattern = r"\((\d+)\)"
+    matches = re.findall(regex_pattern, cell)
+    if matches:
+        return int(matches[0])
+    else:
+        return None
+
 class SwedenSebPlugin(Plugin):
     def get_parser(self, filename: str) -> "SebParser":
         return SebParser(filename)
@@ -28,7 +36,7 @@ class SebParser(StatementParser[str]):
     def parse(self) -> Statement:
 
         #extract account_id from the string in A5 using regexp
-        self.account_id = re.findall(r"\((\d+)\)", self.wb['A5']).value
+        self.account_id = extract_account_id(self.wb['A5'])
         self.bank_account = BankAccount(
             bank_id=self.bank_id, account_id=self.account_id 
         )
