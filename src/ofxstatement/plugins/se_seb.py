@@ -30,7 +30,7 @@ class SebParser(StatementParser[str]):
         #extract account_id from the string in A5 using regexp
         self.account_id = re.findall(r"\((\d+)\)", wb['A5'])
         self.bank_account = BankAccount(
-            bank_id=self.bank_id, self.account_id=statement.account_id
+            bank_id=self.bank_id, account_id=self.account_id 
         )
 
         statement = super().parse()
