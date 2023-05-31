@@ -73,7 +73,7 @@ class SebParser(StatementParser[str]):
 
         stmt_line = StatementLine()
         stmt_line.date = self.parse_datetime(col[0])
-        stmt.date_user = self.parse_datetime(col[1])
+        stmt_line.date_user = self.parse_datetime(col[1])
         stmt_line.refnum = col[2]
         stmt_line.memo = col[3]
         stmt_line.amount = col[4]
