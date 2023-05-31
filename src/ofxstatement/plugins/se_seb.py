@@ -1,4 +1,5 @@
 from typing import Iterable
+from collections import deque
 import itertools
 import re
 
