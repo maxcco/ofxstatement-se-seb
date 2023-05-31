@@ -9,6 +9,10 @@ from ofxstatement.statement import  BankAccount, Statement, StatementLine, gener
 from openpyxl import load_workbook
 from openpyxl.cell import Cell
 
+def take(n, iterable):
+    """Return first n items of the iterable as a list."""
+    return list(itertools.islice(iterable, n))
+
 def extract_account_id(cell):
     regex_pattern = r"\((\d+)\)"
     matches = re.findall(regex_pattern, cell)
