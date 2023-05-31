@@ -69,7 +69,7 @@ class SebParser(StatementParser[str]):
             yield [c.value for c in row]
 
     def parse_record(self, line: Iterable[Cell]) -> StatementLine:
-        col = take(6, row)
+        col = take(6, line)
 
         stmt_line = StatementLine()
         stmt_line.date = self.parse_datetime(col[0])
