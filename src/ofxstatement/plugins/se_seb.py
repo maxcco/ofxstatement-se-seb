@@ -36,7 +36,7 @@ class SebParser(StatementParser[str]):
     def parse(self) -> Statement:
 
         #extract account_id from the string in A5 using regexp
-        self.account_id = extract_account_id(self.wb['A5'])
+        self.account_id = extract_account_id(self.wb['A5'].value)
         self.bank_account = BankAccount(
             bank_id=self.bank_id, account_id=self.account_id 
         )
