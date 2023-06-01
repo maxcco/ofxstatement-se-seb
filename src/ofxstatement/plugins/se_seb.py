@@ -57,9 +57,9 @@ class SebParser(StatementParser[str]):
         last_row = take(6, deque(rows_iter, maxlen=1).pop())
 
         statement.start_date= self.parse_datetime(last_row[0].value)
-        statement.start_balance = D(last_row[5].value).quantize(Decimal('0.00'))
+        statement.start_balance = D(last_row[5].value).quantize(D('0.00'))
         statement.end_date = self.parse_datetime(first_row[0].value)
-        statement.end_balance = D(first_row[5].value).quantize(Decimal('0.00'))
+        statement.end_balance = D(first_row[5].value).quantize(D('0.00'))
 
         return statement
 
@@ -78,7 +78,7 @@ class SebParser(StatementParser[str]):
         stmt_line.date_user = self.parse_datetime(col[1])
         stmt_line.refnum = col[2]
         stmt_line.memo = col[3]
-        stmt_line.amount = D(col[4]).quantize(Decimal('0.00'))
+        stmt_line.amount = D(col[4]).quantize(D('0.00'))
         stmt_line.bank_account_to = self.bank_account
         stmt_line.id = generate_transaction_id(stmt_line)
 
