@@ -57,7 +57,7 @@ class SebParser(StatementParser[str]):
         last_row = take(6, deque(rows_iter, maxlen=1).pop())
 
         statement.start_date= self.parse_datetime(last_row[0].value)
-        statement.start_balance = D(last_row[5].value).quantize(D('0.00'))
+        statement.start_balance = D(last_row[5].value - last_row[4].value).quantize(D('0.00'))
         statement.end_date = self.parse_datetime(first_row[0].value)
         statement.end_balance = D(first_row[5].value).quantize(D('0.00'))
 
