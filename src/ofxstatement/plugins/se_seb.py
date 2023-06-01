@@ -2,6 +2,7 @@ from typing import Iterable
 from collections import deque
 import itertools
 import re
+from decimal import Decimal as D
 
 from ofxstatement.plugin import Plugin
 from ofxstatement.parser import StatementParser
@@ -77,7 +78,7 @@ class SebParser(StatementParser[str]):
         stmt_line.date_user = self.parse_datetime(col[1])
         stmt_line.refnum = col[2]
         stmt_line.memo = col[3]
-        stmt_line.amount = col[4]
+        stmt_line.amount = D(col[4])
         stmt_line.bank_account_to = self.bank_account
         stmt_line.id = generate_transaction_id(stmt_line)
 
